@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>弹幕</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
+    <style>
+        /* amui reset start */
+        *,:before,:after {
+            -webkit-tap-highlight-color: rgba(0,0,0,0)
+        }
+
+        body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,form,fieldset,legend,input,textarea,p,blockquote,th,td {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        fieldset,img {
+            border: 0
+        }
+
+        li {
+            list-style: none
+        }
+
+        caption,th {
+            text-align: left
+        }
+
+        q:before,q:after {
+            content: ""
+        }
+
+        input:password {
+            ime-mode: disabled
+        }
+
+        :focus {
+            outline: 0
+        }
+
+        html,body {
+            min-height: 100%;
+        }
+
+        body {
+            -webkit-user-select: none;
+            user-select: none
+        }
+
+        a,img {
+            -webkit-touch-callout: none
+        }
+
+        body {
+            background-color: #efeff4
+        }
+
+        body.am-bg-white {
+            background-color: #fff
+        }
+
+        body,input,textarea,select,button {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+            font-family: "Helvetica Neue",Helvetica,STHeiTi,sans-serif
+        }
+
+        input {
+            line-height: normal
+        }
+
+        a {
+            color: #0af;
+            text-decoration: none
+        }
+
+        .fn-clear:after {
+            visibility: hidden;
+            display: block;
+            font-size: 0;
+            content: " ";
+            clear: both;
+            height: 0
+        }
+
+        .fn-hide {
+            display: none
+        }
+
+        .fn-left {
+            float: left
+        }
+
+        .fn-right {
+            float: right
+        }
+        /* amui reset end */
+
+
+        body {
+            min-width:320px;
+            background-color: #feca50;
+            overflow-x: hidden;
+        }
+        img {
+            vertical-align: middle;
+        }
+        .fn-clear {
+            zoom: 1;
+        }
+        .fn-clear:after {
+            visibility: hidden;
+            display: block;
+            font-size: 0;
+            content: " ";
+            clear: both;
+            height: 0;
+        }
+
+        .fixed {
+            position: fixed;
+        }
+        .fixed-bottom {
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .barrage-wrap {
+            position: fixed;
+            /*top: 300px;*/
+            bottom: 65px;
+            right: 0;
+            left: 0;
+            height: 144px;
+            overflow: hidden;
+        }
+        .barrage-wrap ul {
+            position: absolute;
+            width: 100%;
+            height: 144px;
+            top: 0;
+            -webkit-transform: translate3d(100%, 0, 0px);
+        }
+
+        .barrage-wrap li {
+            position: absolute;
+            display: inline-block;
+            margin: 12px 0 0 0;
+            padding: 0 10px;
+            border-radius: 5px;
+            background: rgba(255,255,255, 0.5);
+            font-size: 16px;
+            white-space: nowrap;
+            text-shadow: 1px 0 0 #fff, -1px 0 0 #fff, 0 1px 0 #fff, 0 -1px 0 #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="barrage-wrap">
+    <ul>
+        <li>要本人参与哦~</li>
+        <li>洗干净脸没？</li>
+        <li>来，靠近点~</li>
+        <li>不要害羞哈~</li>
+        <li>对准脸部，是脸部呐~</li>
+        <li>拍打两下可使面色红润~</li>
+        <li>建议露出8颗牙齿喲~</li>
+    </ul>
+</div>
+<script src="http://static.alipayobjects.com/amui/zepto/1.1.3/zepto.js"></script>
+<script src="../dist/barrage.js"></script>
+<script>
+    var demo = new Barrage({
+        rows: 2
+    });
+</script>
+</body>
+</html>
