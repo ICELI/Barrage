@@ -62,7 +62,7 @@
         },
         run: function(){
             var that = this;
-            var movePx = $(window).width();
+            var movePx = $(that.options.wrap).width();
             var timer = setInterval(function(){
                 if(movePx <= -that.ul.width()) {
                     clearInterval(timer);
