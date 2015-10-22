@@ -18,7 +18,7 @@
     };
 
     Barrage.prototype = {
-        constructor: 'Brrage',
+        constructor: Barrage,
 
         init: function(options){
             this.rows = Array.apply(null, Array(options.rows)).map(function(item, i) {
