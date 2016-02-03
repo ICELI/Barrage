@@ -4,32 +4,51 @@
 (function($){
     var Barrage = function(options) {
         // 默认参数
-        var opts = {
+        this.default = {
             colors: ['#3689c3', '#b96121', '#a8506b', '#e73357'], // 字体颜色
             rows: 2, // 行数
             maxRow: 0, // 最大宽度
             wrap: '.barrage-wrap',
-            top: 0
+            top: 0,
+            multi: false
         };
 
-        this.options = $.extend(true, {}, opts, options);
+        this.options = $.extend(true, {}, this.default, options);
         // 初始化方法
-        this.init(this.options);
+        this.init();
+        return this;
     };
 
     Barrage.prototype = {
         constructor: Barrage,
 
-        init: function(options){
-            this.rows = Array.apply(null, Array(options.rows)).map(function(item, i) {
+        init: function(){
+            this.rows = Array.apply(null, Array(this.options.rows)).map(function(item, i) {
                 return 0;
             });
             this.render();
-            this.run();
 
             return this;
         },
         render: function(){
+            var that = this,
+                o = that.options;
+
+            if(o.multi) {
+                this.multiTrack();
+            } else {
+                this.singleTrack();
+            }
+        },
+        // single track
+        singleTrack: function() {
+            this.multiTrack();
+            this.run();
+        },
+        run: function(){
+            this.runM();
+        },
+        multiTrack: function(){
             var that = this,
                 o = that.options;
 
@@ -38,7 +57,7 @@
 
             $(o.data).each(function(i, item){
                 var me = $('<li>' + this + '</li>');
-                    me.appendTo(that.ul);
+                me.appendTo(that.ul);
 
                 var index = i % that.rows.length,
                     left = that.rows[index] + Math.floor(Math.random() * 150);
@@ -50,6 +69,8 @@
                 });
 
                 that.rows[index] = left + me.width() + 20;
+                // 是否多轨
+                that.options.multi && that.runM(me)
             });
 
 
@@ -60,14 +81,19 @@
                 'width': that.maxRow
             });
         },
-        run: function(){
+        runM: function(selector){
             var that = this;
-            var movePx = $(that.options.wrap).width();
-            var timer = setInterval(function(){
-                if(movePx <= -that.ul.width()) {
-                    clearInterval(timer);
+            var wrapPx = $(that.options.wrap).width();
+            var movePx = 0;
+            var selector = selector || that.ul;
+            var limitWidth = wrapPx + (150 * (that.options.data.length / that.options.rows));
+            // 重置弹幕 TODO: transition 实现
+            clearInterval(selector[0].timer);
+            selector[0].timer = setInterval(function(){
+                if(movePx <= - limitWidth - that.maxRow) {
+                    clearInterval(selector[0].timer);
                 }
-                that.ul.css('-webkit-transform',  'translate3d('+ (movePx -= 1.6) + 'px, 0, 0px)');
+                selector.css('-webkit-transform',  'translate3d('+ (movePx -= 1.6) + 'px, 0, 0px)');
             }, that.options.speed + (Math.random() * that.options.rows));
         }
     };
@@ -79,6 +105,8 @@
             $(this).each(function(){
                this.Barrage = new Barrage($.extend(opt,{wrap: $(this)}));
             });
+
+            return this;
         }
     });
 })(Zepto);
