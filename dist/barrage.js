@@ -45,9 +45,6 @@
             this.multiTrack();
             this.run();
         },
-        run: function(){
-            this.runM();
-        },
         multiTrack: function(){
             var that = this,
                 o = that.options;
@@ -70,7 +67,7 @@
 
                 that.rows[index] = left + me.width() + 20;
                 // 是否多轨
-                that.options.multi && that.runM(me)
+                that.options.multi && that.run(me)
             });
 
 
@@ -81,7 +78,7 @@
                 'width': that.maxRow
             });
         },
-        runM: function(selector){
+        run: function(selector){
             var that = this;
             var wrapPx = $(that.options.wrap).width();
             var movePx = 0;
@@ -93,7 +90,7 @@
                 if(movePx <= - limitWidth - that.maxRow) {
                     clearInterval(selector[0].timer);
                 }
-                selector.css('-webkit-transform',  'translate3d('+ (movePx -= 1.6) + 'px, 0, 0px)');
+                selector.css('-webkit-transform',  'translate3d('+ (movePx -= 1) + 'px, 0, 0px)');
             }, that.options.speed + (Math.random() * that.options.rows));
         }
     };
