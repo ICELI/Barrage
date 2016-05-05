@@ -97,13 +97,10 @@
 
     window.Barrage = Barrage;
 
-    $.fn = $.extend($.fn,{
-        barrage: function(opt){
-            $(this).each(function(){
-               this.Barrage = new Barrage($.extend(opt,{wrap: $(this)}));
-            });
-
-            return this;
-        }
-    });
+    $.fn.barrage = function(opt){
+        $(this).each(function(){
+           this.Barrage = new Barrage($.extend(opt,{wrap: $(this)}));
+        });
+        return this;
+    };
 })(Zepto);
